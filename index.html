@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Personal portfolio of an Information Technology student.">
+  <title>Kyle Andrei S. Alejo | Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#home"><span></span></a>
+    <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+    <nav id="navigation">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#education">Education</a>
+      <a href="#skills">Skills</a>
+      <a href="#java">Java Project</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-content">
+        <p class="eyebrow">STUDENT PORTFOLIO</p>
+        <h1>Hello, I'm <span>Kyle Andrei Alejo.</span></h1>
+        <p class="hero-copy">An aspiring IT professional who is learning how technology, programming, and creativity can solve everyday problems.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#about">Explore my portfolio</a>
+          <a class="button secondary" href="#contact">Contact me</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="section-heading">
+        <h2>Personal Information</h2>
+      </div>
+      <div class="about-grid">
+        <div class="about-copy">
+          <p>I am a student from Olscho taking Bachelor of Science in Information Technology. I enjoy learning about computers, technology, and programming.</p>
+        </div>
+        <div class="info-panel">
+          <div><span>Full name</span><strong>Kyle Andrei S. Alejo</strong></div>
+          <div><span> Age and year born</span><strong>18 yrs old, born in September 18, 2008</strong></div>
+          <div><span>Program</span><strong>BS Information Technology</strong></div>
+          <div><span>College</span><strong>Our Lady of the Sacred Heart College of Guimba, Inc.</strong></div>
+          <div><span>Location</span><strong>Guiset, Guimba, Nueva Ecija, Philippines</strong></div>
+          <div><span>Email</span><strong><a href="alejokyle31@gmail.com">alejokyle31@gmail.com
+                </a></strong></div>
+          <div><span>Contact number</span><strong>09925225898</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="education">
+      <div class="section-heading">
+        <p class="eyebrow"></p>
+        <h2>Educational Background</h2>
+      </div>
+      <div class="timeline">
+        <article class="timeline-item">
+          <span class="timeline-dot"></span>
+          <p class="timeline-date">Elementary</p>
+          <h3>Guiset Elementary School</h3>
+        </article>
+        <article class="timeline-item">
+          <span class="timeline-dot"></span>
+          <p class="timeline-date">Junior High School</p>
+          <h3>Bartolome Sanggalan National High School</h3>
+        </article>
+        <article class="timeline-item">
+          <span class="timeline-dot"></span>
+          <p class="timeline-date">Senior High School</p>
+          <h3>Bonifacio Luz Natividad Educational Foundation, Inc.</h3>
+        </article>
+        <article class="timeline-item">
+          <span class="timeline-dot"></span>
+          <p class="timeline-date">College</p>
+          <h3>Our Lady of the Sacred Heart College of Guimba, Inc.</h3>
+          <p>Currently taking Bachelor of Science in Information Technology.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="skills">
+      <div class="section-heading">
+        <h2>Skills & Competencies</h2>
+      </div>
+      <div class="skills-grid">
+        <article class="skill-card"><span class="skill-number"><b>TECHNICAL SKILLS</b></span><h3>•Some basic computer troubleshooting</h3><h3>•Software editing</h3></article>
+        <article class="skill-card"><span class="skill-number">PROGRAMMING KNOWLEDGE</span><h3>• Java: Basics and beginner</h3></p> <p><h3>• Html: Web page structures</h3></p><p><h3>•Css: Styling web pages with layout, colors, and responsive design.</h3></p></article>
+      </div>
+    </section>
+
+    <section class="section alt" id="java">
+      <div class="section-heading">
+        <h2>Java Project</h2></div>
+          <span class="project-chip"></span>
+          <h3>My Console-Based Java Game</h3>
+          <p>Tic-Tac-Toe is a two-player strategy game played on a 3×3 board. In this Java console version, the player uses X, while the computer uses O. The goal is to get three matching symbols in a horizontal, vertical, or diagonal line. Players take turns choosing an empty position from 1 to 9. The game ends when either the player or computer wins, or when all spaces are filled and the result will show a draw.</p>
+        
+        </div>
+        <pre><code>
+import java.util.*;
+public class TicTacToe {
+    static char[] board = {
+        '1','2','3',
+        '4','5','6',
+        '7','8','9'
+    };
+    static Scanner input = new Scanner(System.in);
+    static Random random = new Random();
+    // Display the game board
+    static void showBoard() {
+        System.out.println();
+        for (int i = 0; i < 9; i++) {
+            System.out.print(" " + board[i] + " ");
+            if (i % 3 != 2) {
+                System.out.print("|");
+            }
+            if (i % 3 == 2 && i != 8) {
+                System.out.println("\n---+---+---");
+            }
+        }
+        System.out.println("\n");
+    }
+    // Check if a player has won
+    static boolean win(char p) {
+        int[][] lines = {
+            {0,1,2}, {3,4,5}, {6,7,8},
+            {0,3,6}, {1,4,7}, {2,5,8},
+            {0,4,8}, {2,4,6}
+        };
+        for (int[] line : lines) {
+            if (board[line[0]] == p &&
+                board[line[1]] == p &&
+                board[line[2]] == p) {
+                return true;
+            }
+        }
+        return false;
+    }
+    // Check if the board is full
+    static boolean full() {
+        for (char c : board) {
+            if (c >= '1' && c <= '9') {
+                return false;
+            }
+        }
+        return true;
+    }
+    // Find a winning or blocking move
+    static int findMove(char p) {
+        for (int i = 0; i < 9; i++) {
+            if (board[i] >= '1' && board[i] <= '9') {
+                char old = board[i];
+                board[i] = p;
+                if (win(p)) {
+                    board[i] = old;
+                    return i;
+                }
+                board[i] = old;
+            }
+        }
+        return -1;
+    }
+    // Computer makes its move
+    static void computerMove() {
+        int move = findMove('O');
+
+        if (move == -1) {
+            move = findMove('X');
+        }
+        if (move == -1 && board[4] == '5') {
+            move = 4;
+        }
+        if (move == -1) {
+            int[] corners = {0, 2, 6, 8};
+            for (int i : corners) {
+                if (board[i] >= '1' && board[i] <= '9') {
+                    move = i;
+                    break;
+                }
+            }
+        }
+        if (move == -1) {
+            do {
+                move = random.nextInt(9);
+            } while (board[move] < '1' || board[move] > '9');
+        }
+        board[move] = 'O';
+        System.out.println("Computer chose position " + (move + 1));
+    }
+    public static void main(String[] args) {
+        System.out.println("===== TIC-TAC-TOE =====");
+        System.out.println("You are X. Computer is O.");
+        System.out.println("Enter a number from 1 to 9.");
+        while (true) {
+            showBoard();
+            System.out.print("Choose your position: ");
+            int choice = input.nextInt();
+            if (choice < 1 || choice > 9 ||
+                board[choice - 1] < '1' ||
+                board[choice - 1] > '9') {
+                System.out.println("Invalid or occupied position!");
+                continue;
+            }
+            board[choice - 1] = 'X';
+            if (win('X')) {
+                showBoard();
+                System.out.println("Congratulations! You win!");
+                break;
+            }
+            if (full()) {
+                showBoard();
+                System.out.println("It's a draw!");
+                break;
+            }
+            computerMove();
+            if (win('O')) {
+                showBoard();
+                System.out.println("Computer wins! Try again.");
+                break;
+            }
+            if (full()) {
+                showBoard();
+                System.out.println("It's a draw!");
+                break;
+            }
+        }
+        input.close();
+    }
+}
+</code></pre>
+      </div>
+    </section>
+
+    <section class="section contact-section" id="contact">
+      <div class="section-heading">
+        <p class="eyebrow"></p>
+        <h2>Contact Information</h2>
+        <p>you may contact me through the details below.</p>
+      </div>
+      <div class="contact-card">
+        <p><span>Email</span><strong>alejokyle31@gmail.com</strong></p>
+        <p><span>Contact number</span><strong>09925225898</strong></p>
+        <p><span>Facebook</span><strong> <a href="https://www.facebook.com/profile.php?id=61583811548140" target="_blank"> Kyle Ojela</strong></p>
+        <p><span>Location</span><strong>Guimba, Nueva Ecija, Philippines</strong></p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p><span id="year"></span> Kyle Alejo • Personal Portfolio</p>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>
