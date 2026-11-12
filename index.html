@@ -100,138 +100,49 @@
         <h2>Java Project</h2></div>
           <span class="project-chip"></span>
           <h3>My Console-Based Java Game</h3>
-          <p>Tic-Tac-Toe is a two-player strategy game played on a 3×3 board. In this Java console version, the player uses X, while the computer uses O. The goal is to get three matching symbols in a horizontal, vertical, or diagonal line. Players take turns choosing an empty position from 1 to 9. The game ends when either the player or computer wins, or when all spaces are filled and the result will show a draw.</p>
-        
+          <p><b>Project title:</b> LUCKY NUMBER, Test Your Luck and Find the Secret Number!
+Lucky Number Game is a application that allows players to guess a randomly generated number. It uses random number generation, loops, conditional statements, and user input. </p>
         </div>
         <pre><code>
-import java.util.*;
-public class TicTacToe {
-    static char[] board = {
-        '1','2','3',
-        '4','5','6',
-        '7','8','9'
-    };
-    static Scanner input = new Scanner(System.in);
-    static Random random = new Random();
-    // Display the game board
-    static void showBoard() {
-        System.out.println();
-        for (int i = 0; i < 9; i++) {
-            System.out.print(" " + board[i] + " ");
-            if (i % 3 != 2) {
-                System.out.print("|");
-            }
-            if (i % 3 == 2 && i != 8) {
-                System.out.println("\n---+---+---");
-            }
-        }
-        System.out.println("\n");
-    }
-    // Check if a player has won
-    static boolean win(char p) {
-        int[][] lines = {
-            {0,1,2}, {3,4,5}, {6,7,8},
-            {0,3,6}, {1,4,7}, {2,5,8},
-            {0,4,8}, {2,4,6}
-        };
-        for (int[] line : lines) {
-            if (board[line[0]] == p &&
-                board[line[1]] == p &&
-                board[line[2]] == p) {
-                return true;
-            }
-        }
-        return false;
-    }
-    // Check if the board is full
-    static boolean full() {
-        for (char c : board) {
-            if (c >= '1' && c <= '9') {
-                return false;
-            }
-        }
-        return true;
-    }
-    // Find a winning or blocking move
-    static int findMove(char p) {
-        for (int i = 0; i < 9; i++) {
-            if (board[i] >= '1' && board[i] <= '9') {
-                char old = board[i];
-                board[i] = p;
-                if (win(p)) {
-                    board[i] = old;
-                    return i;
-                }
-                board[i] = old;
-            }
-        }
-        return -1;
-    }
-    // Computer makes its move
-    static void computerMove() {
-        int move = findMove('O');
-
-        if (move == -1) {
-            move = findMove('X');
-        }
-        if (move == -1 && board[4] == '5') {
-            move = 4;
-        }
-        if (move == -1) {
-            int[] corners = {0, 2, 6, 8};
-            for (int i : corners) {
-                if (board[i] >= '1' && board[i] <= '9') {
-                    move = i;
-                    break;
-                }
-            }
-        }
-        if (move == -1) {
-            do {
-                move = random.nextInt(9);
-            } while (board[move] < '1' || board[move] > '9');
-        }
-        board[move] = 'O';
-        System.out.println("Computer chose position " + (move + 1));
-    }
+import java.util.Scanner;
+import java.util.Random;
+public class LuckyNumberGame {
     public static void main(String[] args) {
-        System.out.println("===== TIC-TAC-TOE =====");
-        System.out.println("You are X. Computer is O.");
-        System.out.println("Enter a number from 1 to 9.");
-        while (true) {
-            showBoard();
-            System.out.print("Choose your position: ");
-            int choice = input.nextInt();
-            if (choice < 1 || choice > 9 ||
-                board[choice - 1] < '1' ||
-                board[choice - 1] > '9') {
-                System.out.println("Invalid or occupied position!");
-                continue;
-            }
-            board[choice - 1] = 'X';
-            if (win('X')) {
-                showBoard();
-                System.out.println("Congratulations! You win!");
+        Scanner sc = new Scanner(System.in);
+        Random rand = new Random();
+        int luckyNumber = rand.nextInt(10) + 1;
+        int score = 0;
+        System.out.println("=======================");
+        System.out.println("  LUCKY NUMBER GAME");
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~");
+        System.out.println("Guess the lucky number!");
+        System.out.println("Choose a number from 1 to 10.");
+        System.out.println("You have 3 chances.");
+        for (int i = 1; i <= 3; i++) {
+            System.out.print("\nAttempt " + i + ": ");
+            int guess = sc.nextInt();
+            if (guess == luckyNumber) {
+                System.out.println("Amazing! You just found it!");
+                score = 10;
                 break;
-            }
-            if (full()) {
-                showBoard();
-                System.out.println("It's a draw!");
-                break;
-            }
-            computerMove();
-            if (win('O')) {
-                showBoard();
-                System.out.println("Computer wins! Try again.");
-                break;
-            }
-            if (full()) {
-                showBoard();
-                System.out.println("It's a draw!");
-                break;
+            } else if (guess < luckyNumber) {
+                System.out.println("Too low! Try higher.");
+            } else {
+                System.out.println("Too high! Try lower.");
             }
         }
-        input.close();
+        System.out.println();
+        System.out.println("       GAME RESULTS");
+        System.out.println();
+        System.out.println("Lucky Number: " + luckyNumber);
+        System.out.println("Your Score: " + score);
+        if (score == 10) {
+            System.out.println("YOU ARE LUCKY!");
+        } else {
+            System.out.println("Better luck next time!");
+        }        
+        System.out.println("   THANK YOU FOR PLAYING!");
+        sc.close();
     }
 }
 </code></pre>
